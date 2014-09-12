@@ -34,6 +34,7 @@
 		54C01B8819C28CFC00440C18 /* icon_two@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C01B7419C28CFC00440C18 /* icon_two@2x.png */; };
 		54C01B8919C28CFC00440C18 /* icon_one.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C01B7519C28CFC00440C18 /* icon_one.png */; };
 		54C01B8A19C28CFC00440C18 /* icon_one@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C01B7619C28CFC00440C18 /* icon_one@2x.png */; };
+		54C01B8C19C2908E00440C18 /* screenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 54C01B8B19C2908E00440C18 /* screenshot.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		54C01B7419C28CFC00440C18 /* icon_two@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_two@2x.png"; sourceTree = "<group>"; };
 		54C01B7519C28CFC00440C18 /* icon_one.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_one.png; sourceTree = "<group>"; };
 		54C01B7619C28CFC00440C18 /* icon_one@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_one@2x.png"; sourceTree = "<group>"; };
+		54C01B8B19C2908E00440C18 /* screenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshot.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		54C01B3C19C28B1300440C18 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				54C01B8B19C2908E00440C18 /* screenshot.png */,
 				54C01B6219C28CF100440C18 /* Images */,
 				54C01B3D19C28B1300440C18 /* Info.plist */,
 				54C01B3E19C28B1300440C18 /* main.m */,
@@ -274,6 +277,7 @@
 				54C01B7819C28CFC00440C18 /* icon_ten@2x.png in Resources */,
 				54C01B8919C28CFC00440C18 /* icon_one.png in Resources */,
 				54C01B8419C28CFC00440C18 /* icon_four@2x.png in Resources */,
+				54C01B8C19C2908E00440C18 /* screenshot.png in Resources */,
 				54C01B8319C28CFC00440C18 /* icon_four.png in Resources */,
 				54C01B7B19C28CFC00440C18 /* icon_eight.png in Resources */,
 				54C01B4819C28B1300440C18 /* Main.storyboard in Resources */,
