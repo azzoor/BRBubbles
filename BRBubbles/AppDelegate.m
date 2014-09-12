@@ -2,9 +2,10 @@
 //  AppDelegate.m
 //  BRBubbles
 //
-//  Created by Aaron Stephenson on 12/09/2014.
+//  Created by Aaron Stephenson on 11/09/2014.
 //  Copyright (c) 2014 Bronron Apps. All rights reserved.
-//
+//  Website: http://www.bronron.com
+//  Twitter: @BronronApps
 
 #import "AppDelegate.h"
 
