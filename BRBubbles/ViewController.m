@@ -74,6 +74,7 @@
         }
     }
     
+    //Unhide this to see the barrier that is changing the size of the circles/images
     self.viewBarrier = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4)];
     self.viewBarrier.backgroundColor = [UIColor redColor];
     self.viewBarrier.alpha = 0.3;
@@ -101,7 +102,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect container = CGRectMake(scrollView.contentOffset.x+(scrollView.frame.size.width/8), scrollView.contentOffset.y+(scrollView.frame.size.height/8), self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4);
+    CGRect container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrier.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrier.frame.size.height/8), self.viewBarrier.frame.size.width, self.viewBarrier.frame.size.height);
     dispatch_queue_t fetchQ = dispatch_queue_create("BubbleQueue", NULL);
     dispatch_async(fetchQ, ^{
         for (UIImageView *imageView in self.imagesArray)
