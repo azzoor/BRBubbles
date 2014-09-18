@@ -17,7 +17,8 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *imagesArray;
 @property (nonatomic, strong) NSMutableArray *imageNameArray;
-@property (nonatomic, strong) UIView *viewBarrier;
+@property (nonatomic, strong) UIView *viewBarrierOuter;
+@property (nonatomic, strong) UIView *viewBarrierInner;
 @property (nonatomic, assign) CGSize bigSize;
 @property (nonatomic, assign) CGSize smallSize;
 @end
@@ -75,12 +76,19 @@
     }
     
     //Unhide this to see the barrier that is changing the size of the circles/images
-    self.viewBarrier = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4)];
-    self.viewBarrier.backgroundColor = [UIColor redColor];
-    self.viewBarrier.alpha = 0.3;
-    self.viewBarrier.hidden = YES;
-    [self.viewBarrier setUserInteractionEnabled:NO];
-    [self.view addSubview:self.viewBarrier];
+    self.viewBarrierOuter = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4)];
+    self.viewBarrierOuter.backgroundColor = [UIColor redColor];
+    self.viewBarrierOuter.alpha = 0.3;
+    self.viewBarrierOuter.hidden = YES;
+    [self.viewBarrierOuter setUserInteractionEnabled:NO];
+    [self.view addSubview:self.viewBarrierOuter];
+    
+    self.viewBarrierInner = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/4,self.view.frame.size.height/4, self.view.frame.size.width-self.view.frame.size.width/2, self.view.frame.size.height-self.view.frame.size.height/2)];
+    self.viewBarrierInner.backgroundColor = [UIColor redColor];
+    self.viewBarrierInner.alpha = 0.3;
+    self.viewBarrierInner.hidden = YES;
+    [self.viewBarrierInner setUserInteractionEnabled:NO];
+    [self.view addSubview:self.viewBarrierInner];
 }
 
 - (void)addImageToScrollView:(UIImageView *)image
@@ -102,13 +110,14 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrier.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrier.frame.size.height/8), self.viewBarrier.frame.size.width, self.viewBarrier.frame.size.height);
+    CGRect container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierOuter.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrierOuter.frame.size.height/8), self.viewBarrierOuter.frame.size.width, self.viewBarrierOuter.frame.size.height);
+    CGRect containerTwo = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierInner.frame.size.width/4), scrollView.contentOffset.y+(self.viewBarrierInner.frame.size.height/4), self.viewBarrierInner.frame.size.width, self.viewBarrierInner.frame.size.height);
     dispatch_queue_t fetchQ = dispatch_queue_create("BubbleQueue", NULL);
     dispatch_async(fetchQ, ^{
         for (UIImageView *imageView in self.imagesArray)
         {
             CGRect thePosition =  imageView.frame;
-            if(CGRectIntersectsRect(container, thePosition))
+            if(CGRectIntersectsRect(containerTwo, thePosition))
             {
                 if (imageView.tag == notAnimating)
                 {
@@ -117,6 +126,22 @@
                         [UIView animateWithDuration:0.5
                                          animations:^{
                                              imageView.transform = CGAffineTransformMakeScale(1.0,1.0);
+                                         }
+                                         completion:^(BOOL finished) {
+                                             imageView.tag = notAnimating;
+                                         }
+                         ];
+                    });
+                }
+            }else if(CGRectIntersectsRect(container, thePosition))
+            {
+                if (imageView.tag == notAnimating)
+                {
+                    imageView.tag = isAnimating;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [UIView animateWithDuration:0.5
+                                         animations:^{
+                                             imageView.transform = CGAffineTransformMakeScale(0.7,0.7);
                                          }
                                          completion:^(BOOL finished) {
                                              imageView.tag = notAnimating;
