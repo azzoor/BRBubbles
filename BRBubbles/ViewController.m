@@ -79,7 +79,7 @@
     self.viewBarrierOuter = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4)];
     self.viewBarrierOuter.backgroundColor = [UIColor redColor];
     self.viewBarrierOuter.alpha = 0.3;
-    self.viewBarrierOuter.hidden = NO;
+    self.viewBarrierOuter.hidden = YES;
     [self.viewBarrierOuter setUserInteractionEnabled:NO];
     [self.view addSubview:self.viewBarrierOuter];
     
