@@ -79,7 +79,7 @@
     self.viewBarrierOuter = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/8,self.view.frame.size.height/8, self.view.frame.size.width-self.view.frame.size.width/4, self.view.frame.size.height-self.view.frame.size.height/4)];
     self.viewBarrierOuter.backgroundColor = [UIColor redColor];
     self.viewBarrierOuter.alpha = 0.3;
-    self.viewBarrierOuter.hidden = YES;
+    self.viewBarrierOuter.hidden = NO;
     [self.viewBarrierOuter setUserInteractionEnabled:NO];
     [self.view addSubview:self.viewBarrierOuter];
     
@@ -110,7 +110,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    CGRect container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierOuter.frame.size.width/4), scrollView.contentOffset.y+(self.viewBarrierOuter.frame.size.height/4), self.viewBarrierOuter.frame.size.width, self.viewBarrierOuter.frame.size.height);
+    CGRect container = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierOuter.frame.size.width/8), scrollView.contentOffset.y+(self.viewBarrierOuter.frame.size.height/8), self.viewBarrierOuter.frame.size.width, self.viewBarrierOuter.frame.size.height);
     CGRect containerTwo = CGRectMake(scrollView.contentOffset.x+(self.viewBarrierInner.frame.size.width/2), scrollView.contentOffset.y+(self.viewBarrierInner.frame.size.height/2), self.viewBarrierInner.frame.size.width, self.viewBarrierInner.frame.size.height);
     dispatch_queue_t fetchQ = dispatch_queue_create("BubbleQueue", NULL);
     dispatch_async(fetchQ, ^{
